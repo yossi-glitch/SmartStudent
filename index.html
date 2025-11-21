@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)https://edusmart.static.domains/edusmart -->
+<html lang="id" style="--primary-blue: #c9710d;"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>SmartStudent</title>
+    <!-- Link ke Manifest untuk PWA -->
+    <link rel="manifest" href="https://edusmart.static.domains/manifest.json">
+    <!-- Meta tag untuk tema warna di browser -->
+    <meta name="theme-color" content="#337aff">
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="assets/SmartStudent_files/css2" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+<style>
+.OqzrdxgJvhbmRYmqWuCSidJP {
+  width: 152px !important;
+  position: fixed !important;
+  left: 20px !important;
+  bottom: 20px !important;
+  display: block !important;
+  background: #333333 !important;
+  color: #fff !important;
+  padding: 8px 10px !important;
+  z-index: 10000000 !important;
+  border-radius: 50px !important;
+  font-size: 0 !important;
+  overflow: hidden !important;
+  will-change: background, width !important;
+  transition: 0.25s background, 0.25s width !important;
+  display: flex  !important;
+  flex-direction: row  !important;
+  align-items: center  !important;
+  padding: 8px 12px  !important;
+  gap: 10px  !important;
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.1)  !important;
+  text-decoration: none !important;
+}
+.OqzrdxgJvhbmRYmqWuCSidJP:hover {
+  opacity: 1 !important;
+  background: #0F8140 !important;
+}
+.OqzrdxgJvhbmRYmqWuCSidJP:hover svg {
+  transform: scale(1.1) !important;
+}
+.OqzrdxgJvhbmRYmqWuCSidJP svg {
+  will-change: transform !important;
+  transition: 0.25s transform !important;
+}
+.OqzrdxgJvhbmRYmqWuCSidJP p {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif !important;
+  font-style: normal !important;
+  font-weight: 600 !important;
+  font-size: 12px !important;
+  line-height: 125% !important;
+  margin: 0 !important;
+  padding: 0 4px 0 0 !important;
+  color: #fff !important;
+}
+</style></head>
+<body data-new-gr-c-s-check-loaded="14.1263.0" data-gr-ext-installed="" data-new-gr-c-s-loaded="14.1264.0" class="">
+
+    <div id="app-container">
+
+        <!-- ========== LOGIN SCREEN ========== -->
+        <div id="login-screen" class="screen">
+            <div class="logo">📚✓</div>
+            <h2>Selamat Datang di SmartStudent</h2>
+            <p>Silakan masukkan nama Anda untuk memulai.</p>
+            <input type="text" id="name-input" class="login-input" placeholder="Masukkan Nama Anda">
+            <button class="btn" onclick="handleLogin()">Masuk</button>
+        </div>
+
+        <!-- ========== 1. HOME SCREEN (DASHBOARD) ========== -->
+        <div id="home-screen" class="screen">
+            <header class="screen-header">
+                <span>SmartStudent</span>
+                <span>🔔</span>
+            </header>
+            <main class="screen-content">
+                <h3 id="greeting-text">Selamat Pagi, yossi!</h3>
+                <div class="motivational-quote">
+                    "Belajar itu memang capek, tapi hasilnya nggak pernah mengecewakan."
+                </div>
+                <div class="card">
+                    <h4>Tugas Mendatang</h4>
+                    <div id="home-task-list"><p>• matriks  <span style="font-size: 0.8em; color: var(--dark-gray);">Deadline: Sabtu, 22 November 2025</span></p></div>
+                </div>
+                <div class="card">
+                    <h4>Catatan Terbaru</h4>
+                    <div id="home-notes-list"><p>• vektor</p></div>
+                </div>
+            </main>
+            <nav class="bottom-nav">
+                <div class="nav-item" onclick="showScreen(&#39;home-screen&#39;)">
+                    <svg><use href="#icon-home"></use></svg>
+                    <span>Beranda</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;tasks-screen&#39;)">
+                    <svg><use href="#icon-tasks"></use></svg>
+                    <span>Tugas</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;notes-screen&#39;)">
+                    <svg><use href="#icon-notes"></use></svg>
+                    <span>Catatan</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;stats-screen&#39;)">
+                    <svg><use href="#icon-stats"></use></svg>
+                    <span>Statistik</span>
+                </div>
+                <div class="nav-item active" onclick="showScreen(&#39;settings-screen&#39;)">
+                    <svg><use href="#icon-settings"></use></svg>
+                    <span>Pengaturan</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ========== 2. TASKS SCREEN ========== -->
+        <div id="tasks-screen" class="screen">
+            <header class="screen-header">
+                <span class="back-btn" onclick="showScreen(&#39;home-screen&#39;)">←</span>
+                <span>Tugas</span>
+                <span>☰</span>
+            </header>
+            <main class="screen-content">
+                <button class="btn" onclick="showScreen(&#39;add-task-screen&#39;)">+ Tambah Tugas</button>
+                
+                <div id="task-list"><div class="card">
+                <h4>matriks </h4>
+                <p>Mata Pelajaran: Matematika Tingkat Lanjut</p>
+                <p class="task-deadline">Deadline: Sabtu, 22 November 2025</p>
+                <span class="status-tag status-pending" onclick="toggleTaskStatus(this)">Belum Selesai</span>
+                
+            </div></div>
+            </main>
+            <nav class="bottom-nav">
+                <div class="nav-item" onclick="showScreen(&#39;home-screen&#39;)">
+                    <svg><use href="#icon-home"></use></svg>
+                    <span>Beranda</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;tasks-screen&#39;)">
+                    <svg><use href="#icon-tasks"></use></svg>
+                    <span>Tugas</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;notes-screen&#39;)">
+                    <svg><use href="#icon-notes"></use></svg>
+                    <span>Catatan</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;stats-screen&#39;)">
+                    <svg><use href="#icon-stats"></use></svg>
+                    <span>Statistik</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;settings-screen&#39;)">
+                    <svg><use href="#icon-settings"></use></svg>
+                    <span>Pengaturan</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ========== 3. ADD TASK SCREEN ========== -->
+        <div id="add-task-screen" class="screen">
+            <header class="screen-header">
+                <span class="back-btn" onclick="showScreen(&#39;tasks-screen&#39;)">←</span>
+                <span>Tambah Tugas Baru</span>
+                <span></span>
+            </header>
+            <main class="screen-content">
+                <div class="input-group">
+                    <label for="task-title">Judul Tugas</label>
+                    <input type="text" id="task-title" placeholder="Misal: Laporan Kimia">
+                </div>
+                <div class="input-group">
+                    <label for="task-subject">Mata Pelajaran</label>
+                    <select id="task-subject">
+                        <option value="" disabled="" selected="">Pilih Mata Pelajaran</option>
+                        <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                        <option value="Bahasa Jawa">Bahasa Jawa</option>
+                        <option value="Biologi">Biologi</option>
+                        <option value="BK/BP">BK/BP</option>
+                        <option value="Fisika">Fisika</option>
+                        <option value="Informatika">Informatika</option>
+                        <option value="Matematika Tingkat Lanjut">Matematika Tingkat Lanjut</option>
+                        <option value="Matematika Wajib">Matematika Wajib</option>
+                        <option value="Pendidikan Agama Islam">Pendidikan Agama Islam</option>
+                        <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
+                        <option value="Penjaskes">Penjaskes</option>
+                        <option value="Prakarya">Prakarya</option>
+                        <option value="Sejarah">Sejarah</option>
+                        <option value="Seni Budaya">Seni Budaya</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="task-deadline">Deadline</label>
+                    <input type="date" id="task-deadline">
+                </div>
+                <div class="input-group">
+                    <label for="task-desc">Deskripsi</label>
+                    <textarea id="task-desc" rows="4" placeholder="Tambahkan detail tugas..." spellcheck="true"></textarea>
+                </div>
+                <div class="input-group">
+                    <label for="task-status">Status</label>
+                    <select id="task-status">
+                        <option value="active">Belum Selesai</option>
+                        <option value="completed">Sudah Selesai</option>
+                    </select>
+                </div>
+                <button class="btn" onclick="addNewTask()">Simpan Tugas</button>
+            </main>
+        </div>
+
+        <!-- ========== 4. NOTES SCREEN ========== -->
+        <div id="notes-screen" class="screen">
+            <header class="screen-header">
+                <span class="back-btn" onclick="showScreen(&#39;home-screen&#39;)">←</span>
+                <span>Catatan</span>
+                <span>☰</span>
+            </header>
+            <main class="screen-content">
+                <button class="btn" onclick="showScreen(&#39;create-note-screen&#39;)">+ Catatan Materi</button>
+                
+                <div id="notes-list"><div class="card clickable" data-content="">
+                <h4>vektor</h4>
+                <p>Mata Pelajaran: Fisika</p>
+                
+                <button class="delete-btn" onclick="event.stopPropagation(); deleteNote(this)">🗑️ Hapus</button>
+            </div></div>
+            </main>
+            <nav class="bottom-nav">
+                <div class="nav-item" onclick="showScreen(&#39;home-screen&#39;)">
+                    <svg><use href="#icon-home"></use></svg>
+                    <span>Beranda</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;tasks-screen&#39;)">
+                    <svg><use href="#icon-tasks"></use></svg>
+                    <span>Tugas</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;notes-screen&#39;)">
+                    <svg><use href="#icon-notes"></use></svg>
+                    <span>Catatan</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;stats-screen&#39;)">
+                    <svg><use href="#icon-stats"></use></svg>
+                    <span>Statistik</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;settings-screen&#39;)">
+                    <svg><use href="#icon-settings"></use></svg>
+                    <span>Pengaturan</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ========== 5. CREATE NOTE SCREEN ========== -->
+        <div id="create-note-screen" class="screen">
+            <header class="screen-header">
+                <span class="back-btn" onclick="showScreen(&#39;notes-screen&#39;)">←</span>
+                <span>Buat Catatan Baru</span>
+                <span></span>
+            </header>
+            <main class="screen-content">
+                <div class="input-group">
+                    <label for="note-title">Judul Catatan</label>
+                    <input type="text" id="note-title" placeholder="Judul...">
+                </div>
+                <div class="input-group">
+                    <label for="note-subject">Mata Pelajaran</label>
+                    <select id="note-subject">
+                        <option value="" disabled="" selected="">Pilih Mata Pelajaran</option>
+                        <option value="Bahasa Indonesia">Bahasa Indonesia</option>
+                        <option value="Bahasa Inggris">Bahasa Inggris</option>
+                        <option value="Bahasa Jawa">Bahasa Jawa</option>
+                        <option value="Biologi">Biologi</option>
+                        <option value="BK/BP">BK/BP</option>
+                        <option value="Fisika">Fisika</option>
+                        <option value="Informatika">Informatika</option>
+                        <option value="Matematika Tingkat Lanjut">Matematika Tingkat Lanjut</option>
+                        <option value="Matematika Wajib">Matematika Wajib</option>
+                        <option value="Pendidikan Agama Islam">Pendidikan Agama Islam</option>
+                        <option value="Pendidikan Pancasila">Pendidikan Pancasila</option>
+                        <option value="Penjaskes">Penjaskes</option>
+                        <option value="Prakarya">Prakarya</option>
+                        <option value="Sejarah">Sejarah</option>
+                        <option value="Seni Budaya">Seni Budaya</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label for="note-content">Isi Catatan</label>
+                    <textarea id="note-content" rows="8" placeholder="Tulis catatan Anda di sini..." spellcheck="false"></textarea>
+                </div>
+                <div class="input-group">
+                    <label>Tambah Foto</label>
+                    <div class="btn-group">
+                        <button class="btn" onclick="triggerCameraInput()">📷 Ambil Foto</button>
+                        <button class="btn" onclick="triggerGalleryInput()">🖼️ Unggah</button>
+                    </div>
+                    <!-- Hidden file inputs -->
+                    <input type="file" id="camera-input" accept="image/*" capture="environment" style="display: none;" onchange="loadImage(event)">
+                    <input type="file" id="gallery-input" accept="image/*" style="display: none;" onchange="loadImage(event)">
+                </div>
+                <div id="image-preview-container">
+                    <img id="image-preview" src="https://edusmart.static.domains/edusmart" alt="Image Preview" style="display: none;">
+                </div>
+                <button class="btn" onclick="addNewNote()">Simpan Catatan</button>
+            </main>
+        </div>
+
+        <!-- ========== 5.5 VIEW NOTE SCREEN ========== -->
+        <div id="view-note-screen" class="screen">
+            <header class="screen-header">
+                <span class="back-btn" onclick="showScreen(&#39;notes-screen&#39;)">←</span>
+                <span>Detail Catatan</span>
+                <span></span>
+            </header>
+            <main class="screen-content">
+                <div class="card">
+                    <h4 id="view-note-title">vektor</h4>
+                    <p id="view-note-subject">Mata Pelajaran: Fisika</p>
+                    <div id="view-note-content">Tidak ada isi catatan tersimpan.</div>
+                    <img id="view-note-image" class="view-note-image" src="https://edusmart.static.domains/edusmart" alt="Note Image" style="display: none; margin-top: 15px;">
+                </div>
+            </main>
+            <nav class="bottom-nav">
+                <div class="nav-item" onclick="showScreen(&#39;home-screen&#39;)">
+                    <svg><use href="#icon-home"></use></svg>
+                    <span>Beranda</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;tasks-screen&#39;)">
+                    <svg><use href="#icon-tasks"></use></svg>
+                    <span>Tugas</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;notes-screen&#39;)">
+                    <svg><use href="#icon-notes"></use></svg>
+                    <span>Catatan</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;stats-screen&#39;)">
+                    <svg><use href="#icon-stats"></use></svg>
+                    <span>Statistik</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;settings-screen&#39;)">
+                    <svg><use href="#icon-settings"></use></svg>
+                    <span>Pengaturan</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ========== 6. STATISTICS SCREEN ========== -->
+        <div id="stats-screen" class="screen">
+            <header class="screen-header">
+                <span class="back-btn" onclick="showScreen(&#39;home-screen&#39;)">←</span>
+                <span>Statistik</span>
+                <span></span>
+            </header>
+            <main class="screen-content">
+                <div class="stats-grid">
+                    <div class="stats-card" id="stats-completed-tasks">
+                        <h3>0</h3>
+                        <p>Tugas Selesai</p>
+                    </div>
+                    <div class="stats-card" id="stats-total-notes">
+                        <h3>1</h3>
+                        <p>Catatan Dibuat</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>Aktivitas Mingguan</h4>
+                    <div class="chart-placeholder" id="weekly-activity-chart">
+                        <div class="chart-bar" data-day="1" style="height: 5%;"></div>
+                        <div class="chart-bar" data-day="2" style="height: 5%;"></div>
+                        <div class="chart-bar" data-day="3" style="height: 5%;"></div>
+                        <div class="chart-bar" data-day="4" style="height: 5%;"></div>
+                        <div class="chart-bar" data-day="5" style="height: 100%;"></div>
+                    </div>
+                    <p style="text-align: center; margin-top: 10px; color: var(--dark-gray);">Sen Sel Rab Kam Jum</p>
+                </div>
+                 <div class="card" id="subject-distribution-card"><h4>Distribusi Mata Pelajaran (Tugas)</h4><p>Matematika Tingkat Lanjut <span style="color: var(--primary-blue);">████████████████████ 100%</span></p></div>
+                <div class="card" id="notes-distribution-card"><h4>Distribusi Catatan Materi</h4><p>Fisika <span style="color: var(--primary-blue);">████████████████████ 100%</span></p></div>
+            </main>
+            <nav class="bottom-nav">
+                <div class="nav-item" onclick="showScreen(&#39;home-screen&#39;)">
+                    <svg><use href="#icon-home"></use></svg>
+                    <span>Beranda</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;tasks-screen&#39;)">
+                    <svg><use href="#icon-tasks"></use></svg>
+                    <span>Tugas</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;notes-screen&#39;)">
+                    <svg><use href="#icon-notes"></use></svg>
+                    <span>Catatan</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;stats-screen&#39;)">
+                    <svg><use href="#icon-stats"></use></svg>
+                    <span>Statistik</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;settings-screen&#39;)">
+                    <svg><use href="#icon-settings"></use></svg>
+                    <span>Pengaturan</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- ========== 7. SETTINGS SCREEN ========== -->
+        <div id="settings-screen" class="screen active">
+            <header class="screen-header">
+                <span class="back-btn" onclick="showScreen(&#39;home-screen&#39;)">←</span>
+                <span>Pengaturan</span>
+                <span></span>
+            </header>
+            <main class="screen-content">
+                <div class="card profile-card">
+                    <div class="profile-avatar-container">
+                        <img id="profile-avatar" class="profile-avatar" src="assets/SmartStudent_files/150" alt="Profile Avatar">
+                        <div class="edit-avatar-btn" onclick="triggerAvatarInput()">✏️</div>
+                        <input type="file" id="avatar-input" accept="image/*" style="display: none;" onchange="loadAvatar(event)">
+                    </div>
+                    <div class="profile-info">
+                        <h4 id="profile-name">yossi</h4>
+                        <p id="profile-email">yossi@school.edu</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>Akun</h4>
+                    <div class="settings-item">
+                        <span>Ganti Pengguna</span>
+                        <span style="color: var(--primary-blue); cursor: pointer;" onclick="switchUser()">Ganti</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <h4>Tema</h4>
+                    <div class="settings-item">
+                        <span>Tema Gelap</span>
+                        <div class="toggle-switch" id="theme-toggle" onclick="toggleTheme()"><div class="toggle-slider"></div></div>
+                    </div>
+                    <div class="settings-item">
+                        <span>Warna Aksen</span>
+                        <input type="color" id="accent-color-picker" value="#337aff" onchange="setAccentColor(this.value)">
+                    </div>
+                </div>
+                 <div class="card">
+                    <h4>Data</h4>
+                    <div class="settings-item">
+                        <span>Reset Data</span>
+                        <span style="color: var(--red); cursor: pointer;" onclick="resetAllData()">Hapus Semua</span>
+                    </div>
+                </div>
+            </main>
+            <nav class="bottom-nav">
+                <div class="nav-item" onclick="showScreen(&#39;home-screen&#39;)">
+                    <svg><use href="#icon-home"></use></svg>
+                    <span>Beranda</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;tasks-screen&#39;)">
+                    <svg><use href="#icon-tasks"></use></svg>
+                    <span>Tugas</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;notes-screen&#39;)">
+                    <svg><use href="#icon-notes"></use></svg>
+                    <span>Catatan</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;stats-screen&#39;)">
+                    <svg><use href="#icon-stats"></use></svg>
+                    <span>Statistik</span>
+                </div>
+                <div class="nav-item" onclick="showScreen(&#39;settings-screen&#39;)">
+                    <svg><use href="#icon-settings"></use></svg>
+                    <span>Pengaturan</span>
+                </div>
+            </nav>
+        </div>
+
+        <!-- SVG Icons -->
+        <svg style="display: none;">
+            <symbol id="icon-home" viewBox="0 0 24 24">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+            </symbol>
+            <symbol id="icon-tasks" viewBox="0 0 24 24">
+                <path d="M9 11H3a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h6"></path>
+                <path d="M21 11h-6a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h6"></path>
+            </symbol>
+            <symbol id="icon-notes" viewBox="0 0 24 24">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                <polyline points="14 2 14 8 20 8 20 2"></polyline>
+                <line x1="16" y1="13" x2="8" y2="13"></line>
+                <line x1="16" y1="17" x2="8" y2="17"></line>
+                <polyline points="10 9 9 8 9"></polyline>
+            </symbol>
+            <symbol id="icon-stats" viewBox="0 0 24 24">
+                <line x1="18" y1="20" x2="18" y2="10"></line>
+                <line x1="12" y1="20" x2="12" y2="4"></line>
+                <line x1="6" y1="20" x2="6" y2="14"></line>
+            </symbol>
+            <symbol id="icon-settings" viewBox="0 0 24 24">
+                <circle cx="12" cy="12" r="3"></circle>
+                <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 1.08 2.45 1.65 1.65 0 0 0 .66 1.67 2 2 0 0 1 .9 2.2l.06.06a1.65 1.65 0 0 0 1.82.33 1.65 1.65 0 0 0 1.67-.66 2 2 0 0 1 2.2-.9l.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1.67.66 2 2 0 0 1-2.2.9l.06-.06z"></path>
+            </symbol>
+        </svg>
+
+    </div>
+
+    <script src="js/script.js"></script>
+
+<script src="assets/SmartStudent_files/static.js.download" type="text/javascript"></script><a href="https://static.app/?utm_source=https%3A%2F%2Fedusmart.static.domains%2Fedusmart&amp;utm_campaign=freeplan" class="OqzrdxgJvhbmRYmqWuCSidJP" rel="nofollow" target="_blank"><svg width="24" height="24" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="16" fill="#27AE60"></circle><path fill-rule="evenodd" clip-rule="evenodd" d="M18.0274 13.3642L23.9844 6.11236C24.0218 6.06679 23.9877 6 23.9272 6H14.9538C14.9262 6 14.9011 6.01454 14.8888 6.03811L10.5332 14.2973C10.5081 14.3448 10.5463 14.4006 10.6023 14.3979L13.9899 14.2289L10.8974 20.0932C10.8723 20.1407 10.9106 20.1965 10.9665 20.1938L14.0356 20.041C14.0911 20.0382 14.1294 20.094 14.1043 20.1419L10.0084 27.8986C9.97178 27.9678 10.0631 28.0334 10.1228 27.9811L19.9292 19.3876C19.9782 19.3448 19.9465 19.267 19.8798 19.267H17.1145C17.054 19.267 17.0199 19.1998 17.0573 19.1543L21.6286 13.5893C21.666 13.5434 21.6319 13.4766 21.5714 13.4766H18.0846C18.0241 13.4766 17.9899 13.4098 18.0274 13.3642Z" fill="white"></path></svg><p>Hosted for free<br>with Static.app</p></a>
+
+</body><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
+
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>

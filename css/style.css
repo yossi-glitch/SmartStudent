@@ -1,0 +1,398 @@
+
+        /* --- Global Variables & Styles --- */
+        :root {
+            --primary-blue: #337aff;
+            --white: #ffffff;
+            --light-gray: #f2f2f2;
+            --medium-gray: #e0e0e0;
+            --dark-gray: #555555;
+            --black: #333333;
+            --red: #ff4444;
+            --yellow: #ffcc00;
+            --green: #00C851;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --border-radius: 12px;
+        }
+
+        /* --- Dark Theme Variables --- */
+        body.dark-theme {
+            --primary-blue: #5a92ff;
+            --white: #1e1e1e;
+            --light-gray: #2a2a2a;
+            --medium-gray: #3a3a3a;
+            --dark-gray: #b0b0b0;
+            --black: #e0e0e0;
+            --shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #e9ecef;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: var(--black);
+            transition: background-color 0.3s, color 0.3s;
+            /* Colorful and elegant background pattern */
+            background-image: 
+                repeating-linear-gradient(45deg, rgba(102, 126, 234, 0.05) 0px, rgba(102, 126, 234, 0.05) 35px, rgba(118, 75, 162, 0.05) 35px, rgba(118, 75, 162, 0.05) 70px),
+                repeating-linear-gradient(-45deg, rgba(255, 99, 132, 0.05) 0px, rgba(255, 99, 132, 0.05) 35px, rgba(255, 206, 84, 0.05) 35px, rgba(255, 206, 84, 0.05) 70px);
+        }
+
+        /* --- App Container --- */
+        #app-container {
+            width: 100%;
+            max-width: 420px;
+            height: 100vh; /* Mengisi tinggi layar penuh */
+            background-color: var(--light-gray);
+            border-radius: 0; /* Tidak ada border radius di HP */
+            box-shadow: none;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        
+        /* Untuk tampilan desktop, kembalikan border radius */
+        @media (min-width: 421px) {
+            #app-container {
+                border-radius: 30px;
+                box-shadow: var(--shadow);
+                margin: 20px;
+                height: 90vh;
+                max-height: 800px;
+            }
+        }
+
+
+        /* --- Screen Layout --- */
+        .screen {
+            display: none; /* Hidden by default */
+            flex-direction: column;
+            height: 100%;
+            background-color: var(--light-gray);
+        }
+        .screen.active {
+            display: flex; /* Shown when active */
+        }
+
+        /* --- Login Screen --- */
+        #login-screen {
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+        #login-screen .logo {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        #login-screen h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+        }
+        .login-input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid var(--medium-gray);
+            border-radius: var(--border-radius);
+            margin-bottom: 20px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        /* --- Header --- */
+        .screen-header {
+            background-color: var(--white);
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        .screen-header .back-btn { cursor: pointer; }
+
+        /* --- Content Area --- */
+        .screen-content {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+        }
+
+        /* --- Bottom Navigation --- */
+        .bottom-nav {
+            background-color: var(--white);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            border-top: 1px solid var(--medium-gray);
+        }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            color: var(--dark-gray);
+            font-size: 0.7rem;
+            transition: color 0.2s;
+        }
+        .nav-item.active, .nav-item:hover { color: var(--primary-blue); }
+        .nav-item svg {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 4px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        .nav-item.active svg {
+            stroke: var(--primary-blue);
+        }
+
+        /* --- Reusable Components --- */
+        .card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            position: relative;
+        }
+        .card.clickable {
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .card.clickable:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .btn {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .btn:hover { background-color: #2862d9; }
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .btn-group .btn { margin-top: 0; }
+        .input-group {
+            margin-bottom: 15px;
+        }
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 500;
+            color: var(--black);
+        }
+        .input-group input,
+        .input-group textarea,
+        .input-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--white);
+            color: var(--black);
+        }
+        .status-tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--white);
+            cursor: pointer; /* Indicates it's clickable */
+            transition: background-color 0.3s;
+        }
+        .status-pending { background-color: var(--yellow); color: var(--black); }
+        .status-completed { background-color: var(--green); }
+        .status-overdue { background-color: var(--red); }
+        .important-star { color: #ffc107; }
+        
+        /* Home Screen Specifics */
+        .motivational-quote {
+            font-style: italic;
+            color: var(--dark-gray);
+            text-align: center;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            border-left: 4px solid var(--primary-blue);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+        .stats-card {
+            background-color: var(--white);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            text-align: center;
+        }
+        .stats-card h3 { font-size: 2rem; color: var(--primary-blue); }
+        .stats-card p { color: var(--dark-gray); }
+        .chart-placeholder {
+            height: 150px;
+            background-color: var(--medium-gray);
+            border-radius: var(--border-radius);
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-around;
+            padding: 10px;
+        }
+        .chart-bar {
+            width: 30px;
+            background-color: var(--primary-blue);
+            border-radius: 5px 5px 0 0;
+            transition: height 0.5s ease-in-out;
+        }
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid var(--medium-gray);
+        }
+        .settings-item:last-child { border-bottom: none; }
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 26px;
+            background-color: var(--medium-gray);
+            border-radius: 34px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .toggle-switch.active { background-color: var(--primary-blue); }
+        .toggle-slider {
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white);
+            border-radius: 50%;
+            transition: transform 0.3s;
+        }
+        .toggle-switch.active .toggle-slider { transform: translateX(24px); }
+
+        /* --- Delete Button --- */
+        .delete-btn {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: var(--red);
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+        .delete-btn:hover {
+            text-decoration: underline;
+        }
+        
+        /* --- Image Preview --- */
+        #image-preview-container {
+            margin-top: 15px;
+            text-align: center;
+        }
+        #image-preview, .view-note-image {
+            max-width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* --- Profile Card --- */
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+        .profile-avatar-container {
+            position: relative;
+            width: 100px;
+            height: 100px;
+        }
+        .profile-avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--primary-blue);
+        }
+        .edit-avatar-btn {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            background-color: var(--primary-blue);
+            color: var(--white);
+            border: 2px solid var(--white);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+        .profile-info {
+            text-align: center;
+        }
+        .profile-info h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: var(--black);
+        }
+        .profile-info p {
+            margin: 5px 0 0;
+            font-size: 0.9rem;
+            color: var(--dark-gray);
+        }
+
+        /* --- View Note Content Styling --- */
+        #view-note-content {
+            background-color: var(--light-gray);
+            border: 1px solid var(--medium-gray);
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 15px;
+            min-height: 100px;
+            white-space: pre-wrap; /* Preserves line breaks and wraps text */
+            word-wrap: break-word; /* Breaks long words if needed */
+            font-family: 'Poppins', sans-serif;
+            color: var(--black);
+        }
+    
